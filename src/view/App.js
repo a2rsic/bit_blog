@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, Fragment } from 'react';
+import { Header } from './common/Header';
+import { Footer } from './common/Footer';
+import { BlogList } from './pages/homepage/blog_page/BlogList';
 import './App.css';
+import { About } from './pages/about_page/About';
+import { Switch, Route } from 'react-router-dom';
+import { AllAuthors } from './pages/authors_page/AllAuthors';
+import { SinglePostPage } from './pages/homepage/single_post_page/SinglePostPage';
+import { SingleAuthor } from './pages/authors_page/single_author_page/SingleAuthor';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <Header />
+        <main>
+          <Switch>
+            <Route exact path="/authors" component={AllAuthors} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/single" component={SinglePostPage} />
+            <Route exact path="/single_author" component={SingleAuthor} />
+            <Route exact path="/" component={BlogList} />
+          </Switch>
+        </main>
+        <Footer />
+      </Fragment>
     );
   }
 }
